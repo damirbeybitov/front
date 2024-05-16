@@ -6,27 +6,24 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(true);
-  const [accessToken, setAccessToken] = useState(localStorage.getItem("accessToken"));
-  const refreshToken = localStorage.getItem("refreshToken");
 
   useEffect(() => {
     const checkAccessToken = async () => {
       // refresh token
-      const newAccessToken = await checkToken(accessToken, refreshToken);
-      setAccessToken(newAccessToken);
+      const newAccessToken = await checkToken(localStorage.getItem("accessToken"), localStorage.getItem("refreshToken"));
       localStorage.setItem("accessToken", newAccessToken);
       window.location.href = "/home";
     };
 
-    if (accessToken && typeof accessToken === "string" && accessToken !== "undefined") {
+    if (localStorage.getItem("accessToken") && typeof localStorage.getItem("accessToken") === "string" && localStorage.getItem("accessToken") !== "undefined") {
       checkAccessToken();
     }
-    if (id === null) {
+    if (localStorage.getItem("userId") === null) {
       window.location.href = "/sign";
     } else {
       setLoading(false);
     }
-  });
+  }, []);
 
 
   const isFormValid = () => newPassword.length >= 8 && newPassword === confirmPassword;
