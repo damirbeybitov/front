@@ -37,6 +37,7 @@ const SignUp = () => {
     return (
       <div className="form-wrapper">
         <h1>Happy</h1>
+        <div>check</div>
         <div>
           <h2>{process.env.REACT_APP_URL_TO_BACK}</h2>
         </div>
