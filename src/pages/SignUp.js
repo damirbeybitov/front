@@ -37,6 +37,9 @@ const SignUp = () => {
     return (
       <div className="form-wrapper">
         <h1>Happy</h1>
+        <div>
+          <h2>{process.env.REACT_APP_URL_TO_BACK}</h2>
+        </div>
         <div className="input-field">
           <div className="button-box">
             <button className={tab === "login" ? "active" : "inactive"} onClick={() => highlightButton("login")}>
