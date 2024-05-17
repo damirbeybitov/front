@@ -3,7 +3,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Course } from './Models.js';
 
 const JWT_EXP_BUFFER_MINUTES = 2; // buffer time in minutes before the token expires
-const BACK_URL = import.meta.env.URL_TO_BACK
+const BACK_URL = 'http://206.189.60.189:8080';
 // utils.js
 
 export const checkToken = async (accessToken, refreshToken) => {
@@ -66,8 +66,10 @@ export const authorization = (id, password) => {
   headers.append('Accept', 'application/json');
   headers.append('Authorization', 'Basic ' + encode(id + ":" +  password));
   
+  const url = `${BACK_URL}/login`
+  console.log(url)
 
-  return fetch(BACK_URL+'/login', {
+  return fetch(`${BACK_URL}/login`, {
     method: 'POST',
     headers: headers,
     body: JSON.stringify(data),
@@ -87,7 +89,7 @@ export const registration = (name, email, role, password, pincode) => {
   headers.append('Accept', 'application/json');
   
 
-  return fetch(BACK_URL+'/register', {
+  return fetch(`${BACK_URL}/register`, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(data),
