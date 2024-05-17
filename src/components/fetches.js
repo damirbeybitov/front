@@ -3,7 +3,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Course } from './Models.js';
 
 const JWT_EXP_BUFFER_MINUTES = 2; // buffer time in minutes before the token expires
-const BACK_URL = 'http://206.189.60.189:8080';
+const BACK_URL = process.env.REACT_APP_URL_TO_BACK;
 // utils.js
 
 export const checkToken = async (accessToken, refreshToken) => {
